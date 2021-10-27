@@ -7,6 +7,33 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form onsubmit="return false">
+        <label for="numero1">Lado 1</label>
+        <input type="text" id="numero1">
+        <br>
+        <label for="numero2">Lado 2</label>
+        <input type="text" id="numero2">
+        <br>
+        <br>
+        <input type="submit" onclick="calculoArea()">
+    </form>
+    <br>
+    <p id="Area"></p>
+
+    <script>
+
+        function calculoArea(){
+            var lado1 = document.getElementById('numero1').value;
+            var lado2 = document.getElementById('numero2').value;
+
+            var area = Number(lado1) * Number(lado2);
+
+            document.getElementById("Area").innerHTML = "El area del rectangulo es: "+ area;
+
+        }
+
+
+    </script>
+
 </body>
 </html>
