@@ -8,5 +8,54 @@
 </head>
 <body>
     
+    <form onsubmit="return false">
+        <label for="numero1">Numero 1</label>
+        <input type="text" id="numero1">
+        <br>
+        <input type="submit" onclick="comparador()">
+    </form>
+
+    <br>
+    <p id="respuesta"></p>
+
+    <script>
+
+        function comparador(){
+            var numero1 = document.getElementById('numero1').value;
+           
+            var numero = Number(numero1)-1;
+
+            var esPrimo = false;
+
+            var factorial = 1;
+
+            var i = 1;
+            while (i < numero+1) {
+                
+                factorial *= i;
+                i++;
+            }
+
+            alert(factorial);
+
+            var division = (factorial+1) % numero1;
+
+            alert(division);
+            if (division == 0) {
+                esPrimo = true;
+            }else{
+                esPrimo = false;
+            }
+
+            if (esPrimo == true) {
+                document.getElementById("respuesta").innerHTML = "El numero "+ numero1 +" es primo";
+            }
+            else{
+                document.getElementById("respuesta").innerHTML = "El numero "+ numero1 +" no es primo"
+            }
+        }
+
+    </script>
+
 </body>
 </html>
