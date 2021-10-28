@@ -7,6 +7,40 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+    <form onsubmit="return false">
+        <label for="numero1">Numero 1</label>
+        <input type="text" id="numero1">
+        <br>
+        <label for="numero2">Numero 2</label>
+        <input type="text" id="numero2">
+        <br>
+        <br>
+        <input type="submit" onclick="comparador()">
+    </form>
+
+    <br>
+    <p id="respuesta"></p>
+
+    <script>
+
+        function comparador(){
+            var numero1 = document.getElementById('numero1').value;
+            var numero2 = document.getElementById('numero2').value;
+
+            if (Number(numero1)>Number(numero2)) {
+                document.getElementById("respuesta").innerHTML = numero1+" Es mayor que "+numero2;
+            } else if(Number(numero1)==Number(numero2)) {
+                document.getElementById("respuesta").innerHTML = numero1+" Es igual que "+numero2;
+            } else{
+                document.getElementById("respuesta").innerHTML = numero1+" Es menor que "+numero2;
+            }
+
+            
+
+        }
+
+
+    </script>
 </body>
 </html>
