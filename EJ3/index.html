@@ -7,6 +7,39 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form onsubmit="return false">
+        <label for="numero1">Introduzca Numero </label>
+        <input type="text" id="numero1">
+        <br>
+        <br>
+        <input type="submit" onclick="calculoArea()">
+    </form>
+
+    <script>
+
+        function calculoArea(){
+            var numero1 = document.getElementById('numero1').value;
+
+            switch (numero1) {
+                case '100':
+                alert("El numero es 100");
+                    break;
+
+                case '200':
+                alert("El numero es 200");
+                    break;
+
+                default:
+                if (numero1>0) {
+                alert("El numero es positivo");
+                }else{
+                alert("El numero es negativo");
+                }
+                    break;
+            }
+        }
+
+
+    </script>
 </body>
 </html>
