@@ -7,6 +7,39 @@
     <title>Document</title>
 </head>
 <body>
+    <form onsubmit="return false">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre">
+        <br>
+        <label for="apellidos">Apellidos</label>
+        <input type="text" id="apellidos">
+        <br>
+        <label for="numero2">Repeticiones</label>
+        <input type="text" id="numero2">
+        <br>
+        <br>
+        <input type="submit" onclick="comparador()">
+    </form>
+
+    <br>
     
+
+    <script>
+        
+        function comparador(){
+            var nombre = document.getElementById('nombre').value;
+            var numero2 = document.getElementById('numero2').value;
+            
+            for (var i = 0; i < numero2; i++) {
+               
+                document.write(nombre + "<br>");
+
+            }
+        }
+
+    </script>
+
+        
+
 </body>
 </html>
