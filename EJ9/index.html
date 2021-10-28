@@ -7,6 +7,49 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+    <form onsubmit="return false">
+        <label for="palabra">Palabra a comprobar</label>
+        <input type="text" id="palabra">
+        <br>
+        <input type="submit" onclick="palindromo()">
+    </form>
+    <br>
+    <br>
+    <p id="resultado"></p>
+
+    <script>
+
+        function palindromo(){
+
+            var palabra = document.getElementById('palabra').value;
+
+            var filtro = /[^A-Za-z0-9]/g;
+
+            palabraLimpia = palabra.toLowerCase().replace(filtro, '');
+
+            var palindromo = false;
+
+            var longitud = palabraLimpia.length;
+
+            for (var i = 0; i < longitud; i++) {
+                if (palabraLimpia[i] !== palabraLimpia[longitud-1-i]) {
+                    palindromo = false;
+                }else{
+                    palindromo = true;
+                }
+            }
+            if (palindromo) {
+
+                document.getElementById('resultado').innerHTML = "Es palindromo";
+            
+            }else{
+
+                document.getElementById('resultado').innerHTML = "No es palindromo";
+            
+            }
+        }
+
+    </script>
 </body>
 </html>
