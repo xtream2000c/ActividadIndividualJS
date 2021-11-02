@@ -9,29 +9,42 @@
 </head>
 <body>
     <div class="formulario">
-        <form onsubmit="return false">
+        <form onsubmit="return false" id="inicial">
             <label for="numero1">Numero maximo.</label>
             <br>
-            <input type="text" id="numero1">
+            <input type="text" id="numero1" required>
             <br>
             <br>
             <label for="numero2">Intentos.</label>
             <br>
-            <input type="text" id="numero2">
+            <input type="text" id="numero2" required>
             <br>
             <br>
-            <input type="submit" onclick="comenzar()">
+            <input type="submit" onclick="comenzar()" value="Comenzar">
+        </form>
+
+        <form onsubmit="return false" id="juego">
+            <label for="numero1">Numero.</label>
+            <br>
+            <input type="text" id="numero3">
+            <br>
+            <br>
+            <input type="submit" onclick="prueba()">
         </form>
     </div>
 
     <script>
         function comenzar(){
+
             var iMax = document.getElementById('numero1').value;
             var intentos = document.getElementById('numero2').value;
 
             var iNumAleatorio=Math.floor((Math.random() * (iMax)) + 1);
-
             
+            var form1 = document.getElementById("inicial");
+            var form2 = document.getElementById("juego")
+            form1.style.display = "none";
+            form2.style.display = "block";
 
         }
     </script>
