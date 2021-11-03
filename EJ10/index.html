@@ -8,45 +8,180 @@
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <div class="formulario">
+
+    <div id="formulario">
+        
         <form onsubmit="return false" id="inicial">
             <label for="numero1">Numero maximo.</label>
             <br>
-            <input type="text" id="numero1" required>
+            <input type="text" id="numero1" value="100" required>
             <br>
             <br>
             <label for="numero2">Intentos.</label>
             <br>
-            <input type="text" id="numero2" required>
+            <input type="text" id="numero2" value="10" required>
             <br>
             <br>
             <input type="submit" onclick="comenzar()" value="Comenzar">
         </form>
 
         <form onsubmit="return false" id="juego">
-            <label for="numero1">Numero.</label>
+            <h4 id="intentos"></h4>
+            <label for="numero3">Numero.</label>
             <br>
             <input type="text" id="numero3">
             <br>
             <br>
-            <input type="submit" onclick="prueba()">
+            <input type="submit" onclick="prueba()" value="Comparar">
         </form>
+
+        <div id="respuesta">
+            <h4 id="tituloRespuesta"></h4>
+            <br>
+            <p id="descripcionRespuesta"></p>
+            <br>
+            <form onsubmit="return false">
+                <input type="submit" onclick="juega()" value="Reintentar">
+            </form>
+        </div>
+
+        <div id="acierto">
+            <h4 id="tituloAcierto"></h4>
+            <br>
+            <p id="descripcionAcierto"></p>
+            <br>
+            <form action="index.html">
+                <input type="submit" value="Volver a jugar">
+            </form>
+        </div>
+
+        <div id="perdiste">
+            <h4 id="tituloPerdiste"></h4>
+            <br>
+            <p id="descripcionPerdiste"></p>
+            <br>
+            <form action="index.html">
+                <input type="submit" value="Volver a jugar">
+            </form>
+        </div>
+
     </div>
 
     <script>
+
+        var iMax = 0;
+        var intentos = 0;
+        var iNumAleatorio = 0;
+        var form1 = document.getElementById("inicial");
+        var form2 = document.getElementById("juego");
+        var respuesta = document.getElementById("respuesta");
+        var acierto = document.getElementById("acierto");
+        var perdiste = document.getElementById("perdiste");
+        var formularioBG = document.getElementById("formulario");
+
         function comenzar(){
 
-            var iMax = document.getElementById('numero1').value;
-            var intentos = document.getElementById('numero2').value;
+            iMax = document.getElementById('numero1').value;
+            intentos = document.getElementById('numero2').value;
 
-            var iNumAleatorio=Math.floor((Math.random() * (iMax)) + 1);
+            iNumAleatorio=Math.floor((Math.random() * (iMax)) + 1);
             
-            var form1 = document.getElementById("inicial");
-            var form2 = document.getElementById("juego")
+            document.getElementById('intentos').innerHTML= "Intentos restantes: " + intentos;
+
             form1.style.display = "none";
             form2.style.display = "block";
 
         }
+
+        function juega(){
+
+            document.body.style.backgroundColor = "#2c3e50";
+            formularioBG.style.backgroundColor = "#bdc3c7";
+
+            form2.style.display = "block";
+            respuesta.style.display = "none";
+
+        }
+
+        function prueba(){
+
+            document.getElementById('intentos').innerHTML= "Intentos restantes: " + (intentos-1);            
+
+            var numero = document.getElementById('numero3').value;
+
+            if(intentos == 1 && iNumAleatorio != numero){
+
+                Perdiste();
+
+            }else{
+                
+                if(iNumAleatorio == numero) {
+
+                    Acierto();
+
+                }else if(numero<iNumAleatorio){
+                    
+                    falloMenor();
+                    intentos = intentos - 1;
+
+                }else{
+
+                    falloMayor();
+                    intentos = intentos - 1;
+
+                }
+            }
+
+            function falloMenor(){
+
+                form2.style.display = "none";
+                respuesta.style.display = "block";
+                document.body.style.backgroundColor = "#8A2387";
+                formularioBG.style.backgroundColor = "#E94057";
+
+                titulo=document.getElementById("tituloRespuesta").innerHTML = "Has fallado";
+                descripcion=document.getElementById("descripcionRespuesta").innerHTML = "El numero introducido es menor";
+
+            }
+
+            function falloMayor(){
+
+                form2.style.display = "none";
+                respuesta.style.display = "block";
+                document.body.style.backgroundColor = "#8A2387";
+                formularioBG.style.backgroundColor = "#E94057";
+
+                titulo=document.getElementById("tituloRespuesta").innerHTML = "Has fallado";
+                descripcion=document.getElementById("descripcionRespuesta").innerHTML = "El numero introducido es mayor";
+
+            }
+
+            function Acierto(){
+
+                form2.style.display = "none";
+                acierto.style.display = "block";
+                document.body.style.backgroundColor = "#96c93d";
+                formularioBG.style.backgroundColor = "#00b09b";
+
+                titulo=document.getElementById("tituloAcierto").innerHTML = "Acertaste";
+                descripcion=document.getElementById("descripcionAcierto").innerHTML = "Has ganado el numero era: " + iNumAleatorio;
+
+            }
+
+            function Perdiste(){
+
+                form2.style.display = "none";
+                perdiste.style.display = "block";
+                document.body.style.backgroundColor = "#8A2387";
+                formularioBG.style.backgroundColor = "#E94057";
+
+                titulo=document.getElementById("tituloPerdiste").innerHTML = "Has perdido";
+                descripcion=document.getElementById("descripcionPerdiste").innerHTML = "No te quedan intentos, el numero era: " + iNumAleatorio;
+
+            }
+
+        }
+
     </script>
 
 </body>
